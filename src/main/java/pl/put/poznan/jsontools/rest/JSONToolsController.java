@@ -15,6 +15,7 @@ import java.util.Arrays;
 @RequestMapping("/{text}")
 public class JSONToolsController {
 
+    public JsonNode data;
     private static final Logger logger = LoggerFactory.getLogger(JSONToolsController.class);
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
@@ -24,8 +25,10 @@ public class JSONToolsController {
         // log the parameters
         logger.debug(text);
         logger.debug(Arrays.toString(transforms));
+        //if text is a string, it needs to be transformed into JsonNode
         try{
-        JsonNode data=objectMapper.readTree(text);
+            ObjectMapper objectMapper=new ObjectMapper();
+            data=objectMapper.readTree(text);
         }
         catch(Throwable e){}
         // perform the transformation, you should run your logic here, below is just a silly example
@@ -41,7 +44,8 @@ public class JSONToolsController {
         logger.debug(text);
         logger.debug(Arrays.toString(transforms));
         try{
-        JsonNode data=objectMapper.readTree(text);
+            ObjectMapper objectMapper=new ObjectMapper();
+            data=objectMapper.readTree(text);
         }
         catch(Throwable e){}
         // perform the transformation, you should run your logic here, below is just a silly example
