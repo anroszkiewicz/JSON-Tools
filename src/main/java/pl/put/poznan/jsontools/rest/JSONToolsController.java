@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import pl.put.poznan.jsontools.logic.*;
+import pl.put.poznan.jsontools.logic.JSONTools;
 
 import java.util.Arrays;
 
@@ -19,7 +19,7 @@ public class JSONToolsController {
     private static final Logger logger = LoggerFactory.getLogger(JSONToolsController.class);
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public JsonNode get(@PathVariable String text,
+    public String get(@PathVariable String text,
                               @RequestParam(value="transforms", defaultValue="upper,escape") String[] transforms) {
 
         // log the parameters
@@ -32,12 +32,12 @@ public class JSONToolsController {
         }
         catch(Throwable e){}
         // perform the transformation, you should run your logic here, below is just a silly example
-        Minification jsontools = new Minification();
-        return jsontools.transform(data);
+        JSONTools jsontools = new JSONTools(transforms);
+        return jsontools.transform(data).toString();
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public JsonNode post(@PathVariable String text,
+    public String post(@PathVariable String text,
                       @RequestBody String[] transforms) {
 
         // log the parameters
@@ -49,8 +49,8 @@ public class JSONToolsController {
         }
         catch(Throwable e){}
         // perform the transformation, you should run your logic here, below is just a silly example
-        Minification jsontools = new Minification();
-        return jsontools.transform(data);
+        JSONTools jsontools = new JSONTools(transforms);
+        return jsontools.transform(data).toString();
     }
 
 
