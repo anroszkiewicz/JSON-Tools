@@ -1,4 +1,4 @@
-package pl.put.poznan.jsontools.executable;
+package pl.put.poznan.jsontools.transforms;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -10,8 +10,8 @@ public class Filter implements JSONTextOperation {
         this.filters = filters;
     }
 
-    public JsonNode operation(JsonNode text)
+    public JsonNode operation(JsonNode data)
     {
-        return text;
+        return data;
     }
 }

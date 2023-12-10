@@ -1,7 +1,8 @@
 package pl.put.poznan.jsontools.logic;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import pl.put.poznan.jsontools.executable.*;
+import pl.put.poznan.jsontools.transforms.*;
 
 /**
  * This is just an example to show that the logic should be outside the REST service.
@@ -9,15 +10,21 @@ import pl.put.poznan.jsontools.executable.*;
 public class JSONTools {
 
     private final String[] transforms;
+    public JsonNode data;
 
     public JSONTools(String[] transforms){
         this.transforms = transforms;
     }
 
-    public JsonNode transform(JsonNode text){
+    public String transform(String text){
+        try{
+            ObjectMapper objectMapper=new ObjectMapper();
+            data=objectMapper.readTree(text);
+        }
+        catch(Throwable e){}
         // of course, normally it would do something based on the transforms
         Minification minification=new Minification();
-        text = minification.operation(text);
+        text = minification.operation(data).toString();
         return text;
     }
 }
