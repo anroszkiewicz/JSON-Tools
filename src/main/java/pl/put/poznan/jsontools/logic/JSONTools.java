@@ -20,11 +20,13 @@ public class JSONTools {
         try{
             ObjectMapper objectMapper=new ObjectMapper();
             data=objectMapper.readTree(text);
+            Minification minification=new Minification();
+            text = minification.operation(data).toString();
         }
-        catch(Throwable e){}
+        catch(Throwable e){
+            System.out.println(e);
+        }
         // of course, normally it would do something based on the transforms
-        Minification minification=new Minification();
-        text = minification.operation(data).toString();
         return text;
     }
 }
