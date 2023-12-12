@@ -14,7 +14,7 @@ public class JSONToolsController {
     private static final Logger logger = LoggerFactory.getLogger(JSONToolsController.class);
 
     @RequestMapping(method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
-    public String get(@RequestParam(value="transforms", defaultValue="minification") String[] transforms, 
+    public String get(@RequestParam(value="transforms", defaultValue="minify") String[] transforms, 
                         @RequestParam(value="filterparams", defaultValue="") String[] filterParams,
                         @RequestParam(value="excludeparams", defaultValue="") String[] excludeParams,
                         @RequestBody String jsonString) {
@@ -32,7 +32,7 @@ public class JSONToolsController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    public String post(@RequestParam(value="transforms", defaultValue="minification") String[] transforms, 
+    public String post(@RequestParam(value="transforms", defaultValue="minify") String[] transforms, 
                         @RequestParam(value="filterparams", defaultValue="") String[] filterParams,
                         @RequestParam(value="excludeparams", defaultValue="") String[] excludeParams,
                         @RequestBody String jsonString) {
