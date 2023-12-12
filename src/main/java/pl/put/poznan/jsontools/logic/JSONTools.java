@@ -1,4 +1,8 @@
 package pl.put.poznan.jsontools.logic;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import pl.put.poznan.jsontools.transforms.*;
 
 public class JSONTools {
 
@@ -14,7 +18,7 @@ public class JSONTools {
         this.excludeParams = excludeParams;
     }
 
-    public String transform(){
+    public String transform() {
         // of course, normally it would do something based on the transforms
         return jsonString.toUpperCase();
     }
