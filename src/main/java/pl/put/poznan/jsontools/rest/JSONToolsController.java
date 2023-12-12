@@ -6,41 +6,47 @@ import pl.put.poznan.jsontools.logic.JSONTools;
 
 import java.util.Arrays;
 
-
 @RestController
-@RequestMapping("/{text}")
+@RequestMapping("/")
 public class JSONToolsController {
 
     private static final Logger logger = LoggerFactory.getLogger(JSONToolsController.class);
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public String get(@PathVariable String text,
-                              @RequestParam(value="transforms", defaultValue="upper,escape") String[] transforms) {
+    @RequestMapping(method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    public String get(@RequestParam(value="transforms", defaultValue="minification") String[] transforms, 
+                        @RequestParam(value="filterparams", defaultValue="") String[] filterParams,
+                        @RequestParam(value="excludeparams", defaultValue="") String[] excludeParams,
+                        @RequestBody String jsonString) {
 
         // log the parameters
-        logger.debug(text);
+        logger.debug(jsonString);
         logger.debug(Arrays.toString(transforms));
+        logger.debug(Arrays.toString(filterParams));
+        logger.debug(Arrays.toString(excludeParams));
 
-        // perform the transformation, you should run your logic here, below is just a silly example
-        JSONTools jsontools = new JSONTools(transforms);
-        return jsontools.transform(text);
+        // pass query parameters to class responsible for logic
+        JSONTools jsontools = new JSONTools(jsonString,transforms,filterParams,excludeParams);
+        // return result
+        return jsontools.transform();
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public String post(@PathVariable String text,
-                      @RequestBody String[] transforms) {
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public String post(@RequestParam(value="transforms", defaultValue="minification") String[] transforms, 
+                        @RequestParam(value="filterparams", defaultValue="") String[] filterParams,
+                        @RequestParam(value="excludeparams", defaultValue="") String[] excludeParams,
+                        @RequestBody String jsonString) {
 
         // log the parameters
-        logger.debug(text);
+        logger.debug(jsonString);
         logger.debug(Arrays.toString(transforms));
+        logger.debug(Arrays.toString(filterParams));
+        logger.debug(Arrays.toString(excludeParams));
 
-        // perform the transformation, you should run your logic here, below is just a silly example
-        JSONTools jsontools = new JSONTools(transforms);
-        return jsontools.transform(text);
+        // pass query parameters to class responsible for logic
+        JSONTools jsontools = new JSONTools(jsonString,transforms,filterParams,excludeParams);
+        // return result
+        return jsontools.transform();
     }
-
-
-
 }
 
 
