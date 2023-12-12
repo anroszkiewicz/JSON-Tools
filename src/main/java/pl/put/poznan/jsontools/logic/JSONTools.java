@@ -1,8 +1,6 @@
 package pl.put.poznan.jsontools.logic;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import pl.put.poznan.jsontools.transforms.*;
+import pl.put.poznan.jsontools.decorators.*;
 
 public class JSONTools {
 
@@ -19,7 +17,27 @@ public class JSONTools {
     }
 
     public String transform() {
-        // of course, normally it would do something based on the transforms
-        return jsonString.toUpperCase();
+
+		// test wheather text is in valid json format
+
+		JSONString decorator = new SimpleJSONString(jsonString);
+
+		for (String transform: transforms) {
+			switch(transform) {
+				case "minify":
+					decorator = new Minification(decorator);
+					break;
+				case "decompress":
+					decorator = new Decompression(decorator);
+					break;
+				case "filter":
+					decorator = new Filter(decorator, filterParams);
+					break;
+				case "exclude":
+					decorator = new Exclude(decorator, excludeParams);
+					break;
+			}
+		}
+        return decorator.getData();
     }
 }
