@@ -82,9 +82,17 @@
     <pluginRepositories>
         <pluginRepository>
             <id>spring-releases</id>
-            <url>https://repo.spring.io/libs-release</url>
-        </pluginRepository>
-    </pluginRepositories>
+			<url>https://repo.spring.io/libs-release</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/anroszkiewicz/IOD-L11-Beta</url>
+		</repository>
+	</distributionManagement>
 
 
 </project>
