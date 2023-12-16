@@ -12,10 +12,7 @@ public class Decompression extends JSONDecorator {
 		String data = super.getData();
 		String deco = new String(); // string bedacy wynikiem dekompresji
 		int tabs = 0; // zliczanie wciec
-		boolean first_simple_sign = false; // sprawdzanie czy normalny znak pojawil sie pierwszy raz zeby dzialay
-											// wciecia
-
-		// System.out.println(data);
+		boolean first_simple_sign = false; // sprawdzanie czy normalny znak pojawil sie pierwszy raz zeby dzialaly wciecia
 
 		for (int i = 0; i < data.length(); i++) {
 			char sign = data.charAt(i); // obecnie rozpatrywany znak
@@ -29,19 +26,35 @@ public class Decompression extends JSONDecorator {
 				first_simple_sign = true;
 			} 
 			else if (sign == '}') {
-				if (data.charAt(i - 1) != ']') {
+				if (i+1 < data.length() && data.charAt(i + 1) == ',') {
+					deco = deco.concat(Character.toString('\n'));
+					tabs = tabs - 1;
+					for (int j = 0; j < tabs; j++)
+						deco = deco.concat("  ");
+					deco = deco.concat(Character.toString(sign));
+				} 
+				else if (data.charAt(i - 1) != ']') {
+					deco = deco.concat(Character.toString('\n'));
+					tabs = tabs - 1;
+					for (int j = 0; j < tabs; j++)
+						deco = deco.concat("  ");
+					deco = deco.concat(Character.toString(sign));
+				}
+				else {
+					for (int j = 0; j < tabs; j++)
+						deco = deco.concat("  ");
+					deco = deco.concat(Character.toString(sign));
+					deco = deco.concat(Character.toString('\n'));
+					tabs = tabs - 1;
+					first_simple_sign = true;
+				}
+				if(i+1 < data.length() && data.charAt(i + 1) == ']'){
 					deco = deco.concat(Character.toString('\n'));
 					tabs = tabs - 1;
 				}
-				for (int j = 0; j < tabs; j++)
-					deco = deco.concat("  ");
-				deco = deco.concat(Character.toString(sign));
-				deco = deco.concat(Character.toString('\n'));
-				tabs = tabs - 1;
-				first_simple_sign = true;
 			} 
 			else if (sign == ']') {
-				if (data.charAt(i + 1) == ',') {
+				if (i+1 < data.length() && data.charAt(i + 1) == ',') {
 					for (int j = 0; j < tabs; j++)
 						deco = deco.concat("  ");
 					deco = deco.concat(Character.toString(sign));
@@ -56,16 +69,9 @@ public class Decompression extends JSONDecorator {
 				}
 			} 
 			else if (sign == ',') {
-				if (data.charAt(i - 1) == ']') {
-					deco = deco.concat(Character.toString(sign));
-					deco = deco.concat(Character.toString('\n'));
-					first_simple_sign = true;
-				} 
-				else {
-					deco = deco.concat(Character.toString(sign));
-					deco = deco.concat(Character.toString('\n'));
-					first_simple_sign = true;
-				}
+				deco = deco.concat(Character.toString(sign));
+				deco = deco.concat(Character.toString('\n'));
+				first_simple_sign = true;
 			} 
 			else {
 				if (first_simple_sign == true)
