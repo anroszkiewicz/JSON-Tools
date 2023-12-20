@@ -20,7 +20,7 @@ JSON tools pozwala zarówno na zminifikowanie niezminifikowanej reprezentacji JS
 Aplikacja obsługuje metody GET i POST, przykładowo:
 
 ```
-curl -X GET -H "Content-type: application/json" -d '{name: Darth}' "http://localhost:8080/transforms=minify,filter,exclude&filterparams=name&excludeparams=surname"
+curl -X GET -H "Content-type: application/json" -d '{name: Darth}' "http://localhost:8080/?transforms=minify,filter,exclude&filterparams=name&excludeparams=surname"
 ```
 
 Po transforms podajemy listę operacji, które chcemy wykonać na danych wejściowych.
