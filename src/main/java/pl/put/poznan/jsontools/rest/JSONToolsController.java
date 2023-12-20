@@ -20,7 +20,8 @@ public class JSONToolsController {
                         @RequestBody String jsonString) {
 
         // log the parameters
-        logger.debug(jsonString);
+        logger.info("Read the following JSON:");
+        logger.info(jsonString);
         logger.debug(Arrays.toString(transforms));
         logger.debug(Arrays.toString(filterParams));
         logger.debug(Arrays.toString(excludeParams));
@@ -28,6 +29,7 @@ public class JSONToolsController {
         // pass query parameters to class responsible for logic
         JSONTools jsontools = new JSONTools(jsonString,transforms,filterParams,excludeParams);
         // return result
+        logger.info("Completed transformations and returned result");
         return jsontools.transform();
     }
 
@@ -38,7 +40,8 @@ public class JSONToolsController {
                         @RequestBody String jsonString) {
 
         // log the parameters
-        logger.debug(jsonString);
+        logger.info("Read the following JSON:");
+        logger.info(jsonString);
         logger.debug(Arrays.toString(transforms));
         logger.debug(Arrays.toString(filterParams));
         logger.debug(Arrays.toString(excludeParams));
@@ -46,6 +49,7 @@ public class JSONToolsController {
         // pass query parameters to class responsible for logic
         JSONTools jsontools = new JSONTools(jsonString,transforms,filterParams,excludeParams);
         // return result
+        logger.info("Completed transformations and returned result");
         return jsontools.transform();
     }
 }
