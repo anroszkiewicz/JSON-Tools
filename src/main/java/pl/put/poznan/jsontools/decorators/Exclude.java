@@ -44,13 +44,16 @@ public class Exclude extends JSONDecorator {
 	}
 	/** 
 	* Class constructor
+	* @param toBeDecorated input JSONString
+	* @param excludeParams array containing names of fields to filter out of JSON
 	*/
 	public Exclude(JSONString toBeDecorated, String[] excludeParams) {
 		super(toBeDecorated);
 		this.filters = excludeParams;
 	}
 	/**
-	 * Method that transforms JSON String into JsonNode, then calls excludeNode function to filter the data
+	 * Method that transforms JSON String into JsonNode, then calls excludeNode function to filter the data.
+	 * @return JSON in String form that doesn't contain the specified fields
 	 */
 	@Override
 	public String getData() {

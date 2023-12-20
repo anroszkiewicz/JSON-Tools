@@ -41,6 +41,8 @@ public class Filter extends JSONDecorator {
 	}
 	/** 
 	* Class constructor
+	* @param toBeDecorated input JSONString
+	* @param filterParams array containing names of fields that should remain in JSON
 	*/
 	public Filter(JSONString toBeDecorated, String[] filterParams) {
 		super(toBeDecorated);
@@ -48,6 +50,7 @@ public class Filter extends JSONDecorator {
 	}
 	/**
 	 * Method that transforms JSON String into JsonNode, then calls filterNode function to filter the data
+	 * @return JSON in String form that contains only the specified fields
 	 */
 	@Override
 	public String getData() {

@@ -10,19 +10,19 @@ public class Decompression extends JSONDecorator {
 	public String getData() {
 
 		String data = super.getData();
-		String deco = new String(); // string bedacy wynikiem dekompresji
-		int tabs = 0; // zliczanie wciec
-		boolean first_simple_sign = false; // sprawdzanie czy normalny znak pojawil sie pierwszy raz zeby dzialaly wciecia
+		String deco = new String(); // result of decompression
+		int tabs = 0; // counts indentation
+		boolean first_simple_sign = false; // checks if a character appears for the first time
 
 		for (int i = 0; i < data.length(); i++) {
-			char sign = data.charAt(i); // obecnie rozpatrywany znak
+			char sign = data.charAt(i); // current character
 
 			if (sign == '[' || sign == '{') {
-				for (int j = 0; j < tabs; j++) // wciecia
+				for (int j = 0; j < tabs; j++) // indentation
 					deco = deco.concat("  ");
-				deco = deco.concat(Character.toString(sign)); // dodaje znak na koniec deco
-				deco = deco.concat(Character.toString('\n')); // dodaje enter na koniec deco
-				tabs = tabs + 1; // regulacja wciec
+				deco = deco.concat(Character.toString(sign)); // add character at the end
+				deco = deco.concat(Character.toString('\n')); // adds enter at the end
+				tabs = tabs + 1; // regulate indentation
 				first_simple_sign = true;
 			} 
 			else if (sign == '}') {
@@ -78,7 +78,7 @@ public class Decompression extends JSONDecorator {
 					for (int j = 0; j < tabs; j++)
 						deco = deco.concat("  ");
 				deco = deco.concat(Character.toString(sign));
-				if (sign == ':') // spacja po dwokropku
+				if (sign == ':') // space after :
 					deco = deco.concat(Character.toString(' '));
 				first_simple_sign = false;
 			}
