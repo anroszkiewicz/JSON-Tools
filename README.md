@@ -7,10 +7,34 @@ JSON tools pozwala zarówno na zminifikowanie niezminifikowanej reprezentacji JS
 
 # Autorzy
 
-Michał Chojnacki 151859 - Scrum Master
+- Michał Chojnacki 151859 - Scrum Master
 
-Jakub Głowacki 151865
+- Jakub Głowacki 151865
 
-Krzysztof Jaworski 151816
+- Krzysztof Jaworski 151816
 
-Anna Roszkiewicz 151883 - Proxy Product Owner
+- Anna Roszkiewicz 151883 - Proxy Product Owner
+
+# Jak używać
+
+Aplikacja obsługuje metody GET i POST, przykładowo:
+
+```
+curl -X GET -H "Content-type: application/json" -d '{name: Darth}' "http://localhost:8080/?transforms=minify,filter,exclude&filterparams=name&excludeparams=surname"
+```
+
+Po transforms podajemy listę operacji, które chcemy wykonać na danych wejściowych.
+
+Dostępne operacje:
+
+- minify: pozwala uzyskać zminifikowaną strukturę w formacie JSON na podstawie pełnej
+
+- decompress: pozwala uzyskać pełną strukturę w formacie JSON na podstawie zminifikowanej
+
+- filter: pozwala uzyskać strukturę w formacie JSON zawierającą tylko określone własności
+
+  wymaga podania parametru filterparams z listą własności
+
+- exclude: pozwala uzyskać strukturę w formacie JSON nie zawierającą określonych własności
+
+  wymaga podania parametru excludeparams z listą własności
