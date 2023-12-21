@@ -20,7 +20,7 @@ JSON tools pozwala zarówno na zminifikowanie niezminifikowanej reprezentacji JS
 Aplikacja obsługuje metody GET i POST, przykładowo:
 
 ```
-curl -X GET -H "Content-type: application/json" -d '{name: Darth}' "http://localhost:8080/?transforms=minify,filter,exclude&filterparams=name&excludeparams=surname"
+curl -X GET -H "Content-type: application/json" -d '{"name": "Darth"}' "http://localhost:8080/?transforms=minify,filter,exclude&filterparams=name&excludeparams=surname"
 ```
 
 Po transforms podajemy listę operacji, które chcemy wykonać na danych wejściowych.
@@ -38,3 +38,7 @@ Dostępne operacje:
 - exclude: pozwala uzyskać strukturę w formacie JSON nie zawierającą określonych własności
 
   wymaga podania parametru excludeparams z listą własności
+
+  ---
+
+  Operacje wykonywane są w kolejności ich wpisania w pole transforms. Zaleca się wykonywanie minifikacji i dekompresji jako ostatnich transformacji (pozostałe transformacje nie zapewniają utrzymania zminifikowanej / zdekowanej formy).
