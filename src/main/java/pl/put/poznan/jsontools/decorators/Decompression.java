@@ -1,11 +1,26 @@
 package pl.put.poznan.jsontools.decorators;
-
+/**
+ * Class that performs decompression on a given minified JSON. 
+ * Indentation, new lines and spaces are added to ensure readability.
+ */
 public class Decompression extends JSONDecorator {
 
+	/** 
+	* Class constructor
+	* @param toBeDecorated input JSONString
+	*/
 	public Decompression(JSONString toBeDecorated) {
 		super(new Minification(toBeDecorated));
 	}
 
+	/**
+	 * Method that performs decompression.
+	 * Parses the given JSON character by character.
+	 * Indentation and new lines are added after brackets.
+	 * Each field in JSON is displayed in a new line.
+	 * Spaces are added after colons.
+	 * @return String containing JSON in decompressed form
+	*/
 	@Override
 	public String getData() {
 
