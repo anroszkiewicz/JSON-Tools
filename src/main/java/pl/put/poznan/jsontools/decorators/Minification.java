@@ -28,7 +28,7 @@ public class Minification extends JSONDecorator {
 				escapeMode = true;
 				mini = mini.concat(Character.toString(sign));
 			} 
-			else if (inQuotes == false && (sign == ' ' || sign == '\n'))
+			else if (inQuotes == false && (sign == ' ' || sign == '\n' || sign =='\t'))
 				continue;
 			else
 				mini = mini.concat(Character.toString(sign));
