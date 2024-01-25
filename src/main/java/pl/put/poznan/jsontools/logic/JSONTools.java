@@ -41,8 +41,6 @@ public class JSONTools {
     /**
 	 * Checks JSON validity by transforming it to a JsonNode object using ObjectMapper.
      * Creates decorator object and objects for transformations requested by user.
-     * @throws JsonMappingException Exception on server side
-	 * @throws JsonProcessingException Exception that is a result of wrong input data
 	 * @return result of JSON transformations
 	*/
     public String transform() {
