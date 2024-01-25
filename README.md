@@ -7,13 +7,13 @@ JSON tools pozwala zarówno na zminifikowanie niezminifikowanej reprezentacji JS
 
 # Autorzy
 
-- Michał Chojnacki 151859 - Scrum Master
+- Michał Chojnacki 151859 - Scrum Master (Sprint 1)
 
-- Jakub Głowacki 151865
+- Jakub Głowacki 151865 - Scrum Master (Sprint 2)
 
-- Krzysztof Jaworski 151816
+- Krzysztof Jaworski 151816 - Proxy Product Owner (Sprint 2)
 
-- Anna Roszkiewicz 151883 - Proxy Product Owner
+- Anna Roszkiewicz 151883 - Proxy Product Owner (Sprint 1)
 
 # Jak używać
 
